@@ -1,0 +1,26 @@
+CREATE ROLE me WITH LOGIN PASSWORD 'password';
+ALTER ROLE me CREATEDB; 
+postgres=# \q psql -d postgres -U me postgres=> CREATE DATABASE api;
+
+CREATE TABLE users (
+  ID SERIAL PRIMARY KEY,
+  name VARCHAR(30),
+  email VARCHAR(30),
+  password VARCHAR(30)
+);
+
+INSERT INTO users (name, email, password)
+  VALUES ('willIan', 'willian@example.com', 'senha');
+
+
+SELECT table_name 
+FROM information_schema.tables
+WHERE table_schema='public'
+AND table_type='BASE TABLE';
+
+
+CREATE TABLE token (
+  ID SERIAL PRIMARY KEY,
+  token VARCHAR(100),
+  refreshToken VARCHAR(100)
+);
